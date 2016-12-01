@@ -35,6 +35,7 @@ begin
     elsif (clock'event and clock='1') then
       case estado is
         when espera =>
+		  
           if start='1' then
 			 
             estado <= configura;
@@ -45,7 +46,7 @@ begin
           else
 			 
             estado <= espera;
-	    contarJogador1 <= '0';
+				contarJogador1 <= '0';
             contarJogador2 <= '0';
             vitorioso <= "00";
 				
@@ -54,16 +55,19 @@ begin
         when configura =>
 		  
           if modo='0' then
-            if btnJogador1='1' then
+            
+				if btnJogador1='1' then
               contarJogador1 <= '1';
-	    else 
-	      contarJogador1 <= '0';
+				else 
+				contarJogador1 <= '0';
             end if;
-            if btnJogador2='1' then
+				
+            if btnJogador2= '1' then
               contarJogador2 <= '1';
-	    else 
+				else 
               contarJogador2 <= '0';
             end if;
+				
             estado <= configura;
 				
           elsif modo='1' then

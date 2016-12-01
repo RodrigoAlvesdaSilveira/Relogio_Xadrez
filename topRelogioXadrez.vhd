@@ -31,7 +31,7 @@ begin
 
   divisor: entity work.x_divisor
     port map(
-      div=> "000001", -- mudar depois para "011001", --25d
+      div=> "010000", -- mudar depois para "011001", --25d
       clock=>clock,
       new_clock=>clock_interno
     );

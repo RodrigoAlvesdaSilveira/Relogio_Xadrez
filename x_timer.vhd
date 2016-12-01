@@ -35,9 +35,10 @@ begin
 			elsif counter1 = 0 then 
 				counter1 <= x"9";
 				counter2 <= counter2-1;
-				else 
-					counter1 <= counter1-1;
+			else 
+				counter1 <= counter1-1;
 			end if;
+			
 		end if;
   end process;  
 
