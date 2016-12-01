@@ -17,7 +17,7 @@ entity controleRelogioXadrez is
       contarJogador2 : out std_logic;
       
       vitorioso : out std_logic_vector(1 downto 0);
-	   endGame : in std_logic
+      endGame : in std_logic
   );
 end controleRelogioXadrez;
 
@@ -45,27 +45,28 @@ begin
           else
 			 
             estado <= espera;
-				contarJogador1 <= '0';
+	    contarJogador1 <= '0';
             contarJogador2 <= '0';
+            vitorioso <= "00";
 				
           end if;
 			 
         when configura =>
 		  
-          if modo='0' and start = '1' then
+          if modo='0' then
             if btnJogador1='1' then
               contarJogador1 <= '1';
-				else 
-				  contarJogador1 <= '0';
+	    else 
+	      contarJogador1 <= '0';
             end if;
             if btnJogador2='1' then
               contarJogador2 <= '1';
-			   else 
-				  contarJogador2 <= '0';
+	    else 
+              contarJogador2 <= '0';
             end if;
             estado <= configura;
 				
-          elsif modo='1' and start = '1' then
+          elsif modo='1' then
             estado <= desconta;
           end if;
 			 
@@ -73,34 +74,34 @@ begin
 
           if btnXequeMate='1' then
             estado <= fim;
-				if (vezJogador='1') then
-					vencedor <= "10";
-				else
-					vencedor <= "01";
-				end if;
+            if (vezJogador='1') then
+               vencedor <= "10";
+            else
+              vencedor <= "01";
+            end if;
           elsif (btnJogador1='1' and btnJogador2='0') then
             contarJogador1 <= '1';
             contarJogador2 <= '0';
-				vezJogador <= '0';
+            vezJogador <= '0';
           elsif (btnJogador1='0' and btnJogador2='1') then
             contarJogador1 <= '0';
             contarJogador2 <= '1';
-				vezJogador <= '1';
+            vezJogador <= '1';
           end if;
 
-		  if (endGame='1') then
-				if (vezJogador='1') then
-					vencedor <= "10";
-				else
-					vencedor <= "01";
-				end if;
-				estado <= fim;
-		  end if;
+          if (endGame='1') then
+              if (vezJogador='1') then
+                  vencedor <= "10";
+              else
+                  vencedor <= "01";
+              end if;
+              estado <= fim;
+          end if;
 
         when fim =>
           vitorioso <= vencedor;
-			 contarJogador1 <= '0';
-			 contarJogador2 <= '0';
+          contarJogador1 <= '0';
+          contarJogador2 <= '0';
           -- reiniciar no reset
         when others => 
           estado <= espera;
