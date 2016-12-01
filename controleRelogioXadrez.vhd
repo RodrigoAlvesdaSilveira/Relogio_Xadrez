@@ -75,15 +75,19 @@ begin
           if btnXequeMate='1' then
             estado <= fim;
             if (vezJogador='1') then
-               vencedor <= "10";
+               vencedor <= "01";
+               contarJogador1 <= '0';
+               contarJogador2 <= '0';
             else
-              vencedor <= "01";
+              vencedor <= "10";
+               contarJogador1 <= '0';
+               contarJogador2 <= '0';
             end if;
-          elsif (btnJogador1='1' and btnJogador2='0') then
+          elsif (btnJogador2='1') then
             contarJogador1 <= '1';
             contarJogador2 <= '0';
             vezJogador <= '0';
-          elsif (btnJogador1='0' and btnJogador2='1') then
+          elsif (btnJogador1='1') then
             contarJogador1 <= '0';
             contarJogador2 <= '1';
             vezJogador <= '1';
@@ -96,6 +100,8 @@ begin
                   vencedor <= "01";
               end if;
               estado <= fim;
+              contarJogador1 <= '0';
+              contarJogador2 <= '0';
           end if;
 
         when fim =>
